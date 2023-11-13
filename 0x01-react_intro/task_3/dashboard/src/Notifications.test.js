@@ -1,20 +1,24 @@
-import { shallow } from 'enzyme';
-import Notifications from './Notifications';
+import React from "react";
+import {shallow} from "enzyme";
+import { Notifications } from "./Notifications";
 
-describe('<Notifications />', () => {
-  it('test that Notifications renders without crashing', () => {
-    const wrapper = shallow(<Notifications />);
-    expect(wrapper.exists());
+describe("Notifications test", () => {
+  it("Notifications render without crashing", () => {
+    const wrapper = shallow(<Notifications/>);
+    expect(wrapper).toBeDefined();
   });
-  it('verify that Notifications renders three list items', () => {
-    const wrapper = shallow(<Notifications />);
-    wrapper.update();
-    expect(wrapper.find('li')).toHaveLength(3);
+  it("render ul", () => {
+    const wrapper = shallow(<Notifications/>);
+    expect(wrapper.find('ul')).toBeDefined();
   });
-  it('verify that Notifications renders the text Here is the list of notifications', () => {
-    const text = 'Here is the list of notifications';
-    const wrapper = shallow(<Notifications />);
-    wrapper.update();
-    expect(wrapper.find('.Notifications p').text()).toEqual(text);
+  it("render three list items", () => {
+    const wrapper = shallow(<Notifications/>);
+    expect(wrapper.find("li")).toHaveLength(3);
+  });
+  it("render correct text", () => {
+    const wrapper = shallow(<Notifications/>);
+    expect(wrapper.find('p').prop("children")).toBe(
+      "Here is the list of notifications"
+    );
   });
 });
